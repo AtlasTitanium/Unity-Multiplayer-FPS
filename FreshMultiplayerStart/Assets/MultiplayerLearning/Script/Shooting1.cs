@@ -15,6 +15,7 @@ public class Shooting1 : NetworkBehaviour
 
     public int WichHero = 0;
     private Quaternion rotation;
+    private float time;
 
     void Update()
     {  
@@ -95,8 +96,8 @@ public class Shooting1 : NetworkBehaviour
 
         StartCoroutine(Wait(1));
         for(int i = 0; i < 20; i++){
-            rotation = Quaternion.EulerRotation(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f),0);
-            var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, rotation);
+            rotation = Quaternion.EulerRotation(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f),0);
+            var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation*rotation);
             
             bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * Bulletspeed;
             NetworkServer.Spawn(bullet);
@@ -110,11 +111,13 @@ public class Shooting1 : NetworkBehaviour
         Bulletspeed = 12;
 
         StartCoroutine(Wait(1));
-        rotation = Quaternion.EulerRotation(bulletSpawn.rotation.x,-1f,bulletSpawn.rotation.z);
+        //rotation = Quaternion.EulerRotation(bulletSpawn.rotation.x,-0.5f,bulletSpawn.rotation.z);
+        time = -0.8f;
         for(int i = 0; i < 20; i++){
-            rotation = Quaternion.EulerRotation(bulletSpawn.rotation.x,i/2,bulletSpawn.rotation.z);
+            rotation = Quaternion.EulerRotation(bulletSpawn.rotation.x,time,bulletSpawn.rotation.z);
+            time += 0.1f;
             Debug.Log(rotation);
-            var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, rotation);
+            var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation*rotation);
             
             bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * Bulletspeed;
             NetworkServer.Spawn(bullet);
