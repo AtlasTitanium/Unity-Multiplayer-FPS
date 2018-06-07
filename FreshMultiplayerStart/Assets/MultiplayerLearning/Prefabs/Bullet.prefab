@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54349961959192306}
   - component: {fileID: 114194544852906576}
   - component: {fileID: 114524217155995476}
+  - component: {fileID: 114740645889817920}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -58,6 +59,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -154,6 +156,17 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114740645889817920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1995037549861146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f2af40aa25ff14ea8f1c9a7a4a77a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135041234918899216
 SphereCollider:
   m_ObjectHideFlags: 1

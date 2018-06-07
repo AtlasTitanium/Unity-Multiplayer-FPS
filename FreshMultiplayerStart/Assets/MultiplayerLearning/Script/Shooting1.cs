@@ -78,10 +78,10 @@ public class Shooting1 : NetworkBehaviour
     [ClientRpc]
 	void Rpc_FireHero1(){
         BulletLife = 2.0f;
-        Bulletspeed = 6;
+        Bulletspeed = 15;
 
         var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-        StartCoroutine(Wait(0.2f));
+        StartCoroutine(Wait(0.1f));
 
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * Bulletspeed;
         NetworkServer.Spawn(bullet);
@@ -124,6 +124,19 @@ public class Shooting1 : NetworkBehaviour
 
     [ClientRpc]
 	void Rpc_Hero2Action(){
+        BulletLife = 2f;
+        Bulletspeed = 6;
+        
+        var bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+        bullet.GetComponent<Bullet>().strength = 40;
+        StartCoroutine(Wait(2f));
+
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * Bulletspeed;
+        bullet.transform.localScale = new Vector3(bullet.transform.localScale.x*4,bullet.transform.localScale.y*4,bullet.transform.localScale.z*4);
+        
+        NetworkServer.Spawn(bullet);
+        Destroy(bullet, BulletLife);
+        bullet.GetComponent<Bullet>().strength = 10;
 	}
     
     public void Aim(){

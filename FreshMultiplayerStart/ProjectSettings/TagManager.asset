@@ -11,6 +11,7 @@ TagManager:
   - ServerSystem
   - NameInputField
   - Bullet
+  - Wall
   layers:
   - Default
   - TransparentFX
